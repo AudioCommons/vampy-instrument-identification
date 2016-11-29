@@ -39,7 +39,7 @@ class VampyInstrumentIdentification:
 		model_dir = dirname(abspath(__file__))
 		model_path = join(model_dir, 'model_{}.json'.format(image_dim_ordering()))
 		weights_path = join(model_dir, 'weights_{}_{}.hdf5'.format(backend(), image_dim_ordering()))
-		self.deploy = DeepDeploy(self.instrument_names, model_path, weights_path, LogMelSpectrogramVamp(2048, 512, 22050, 5, 128, 'start'))
+		self.deploy = DeepDeploy(self.instrument_names, model_path, weights_path, LogMelSpectrogramVamp(2048, 512, 22050, 5, 128, 'max-energy'))
 		self.deploy.load()
 		return True
 

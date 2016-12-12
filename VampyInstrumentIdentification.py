@@ -96,7 +96,13 @@ class VampyInstrumentIdentification:
 		instrument_probabilities.binCount = len(self.instrument_names)
 		instrument_probabilities.binNames = self.instrument_names
 		
-		return OutputList(predominant_instrument, instrument_probabilities)
+		top_instruments = OutputDescriptor(common)
+		top_instruments.identifier = 'top-instruments'
+		top_instruments.name = 'Top instruments'
+		top_instruments.description = 'The most likely instruments, sorted in descending probability'
+		top_instruments.binCount = 1
+		
+		return OutputList(predominant_instrument, instrument_probabilities, top_instruments)
 
 	def getParameterDescriptors(self):
 		return ParameterList()
@@ -123,4 +129,7 @@ class VampyInstrumentIdentification:
 		output[0] = Feature(values=max_instrument_prob, label=max_instrument_name, timestamp=timestamp, duration=duration)
 		output[1] = Feature(values=instrument_probabilities[0], timestamp=timestamp, duration=duration)
 		top_instruments = sorted(zip(self.deploy.class_names, instrument_probabilities[0]), key=lambda l:l[1], reverse=True)[0:5]
+		output[2] = FeatureList()
+		for instrument in top_instruments:
+			output[2].append(Feature(values=instrument[1], label=instrument[0], timestamp=timestamp, duration=duration))
 		return output

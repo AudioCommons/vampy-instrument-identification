@@ -43,6 +43,7 @@ COPY model_th.json ./
 COPY weights_theano_th.hdf5 ./
 COPY VampyInstrumentIdentification.py ./
 COPY *.n3 /root/
-COPY deepdeploy deepdeploy
+COPY deepsuite deepsuite
+COPY feature_extraction feature_extraction
 
 WORKDIR /srv

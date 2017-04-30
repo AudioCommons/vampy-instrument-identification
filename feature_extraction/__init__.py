@@ -1,0 +1,1 @@
+from .logmelspectrogramvamp import LogMelSpectrogramVamp

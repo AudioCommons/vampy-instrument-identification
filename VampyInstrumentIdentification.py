@@ -8,8 +8,8 @@ os.environ['KERAS_BACKEND'] = 'theano'
 from os.path import dirname, join, abspath
 import copy
 import numpy as np
-from deepdeploy import DeepDeploy
-from deepdeploy.feature_extraction import LogMelSpectrogramVamp
+from deepsuite import DeepDeploy
+from feature_extraction import LogMelSpectrogramVamp
 from keras.backend import backend, image_dim_ordering, set_image_dim_ordering
 # try:
 # 	import pydevd
